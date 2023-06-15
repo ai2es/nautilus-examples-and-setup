@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clonevol
+spec:
+  storageClassName: rook-ceph-block-central
+  dataSource:
+    name: testvol
+    kind: PersistentVolumeClaim
+  accessModes:
+  - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Gi

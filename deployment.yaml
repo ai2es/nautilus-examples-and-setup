@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-deployment
+  labels:
+    k8s-app: ubuntu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: ubuntu
+  template:
+    metadata:
+      labels:
+        k8s-app: ubuntu
+    spec:
+      containers:
+      - image: ubuntu
+        name: ubuntu-pod
+        command:
+          - sleep
+          - "100000000"
+        volumeMounts:
+          - mountPath: "/opt/pvc"
+            name: mypd 
+        resources:
+          limits:
+            cpu: 1
+            memory: 8Gi
+          requests:
+            cpu: 1
+            memory: 4Gi
+      volumes:
+        - name: mypd
+          persistentVolumeClaim:
+            claimName: nysmvol
