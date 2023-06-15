@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ubuntu-deployment
+  name: test-deployment
   labels:
     k8s-app: ubuntu
 spec:
